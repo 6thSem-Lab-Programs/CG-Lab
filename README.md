@@ -18,3 +18,5 @@ Remember to pull from remote repo before pushing to update your local repo with 
 `git pull origin master`
 
 To maintain separate versions and prevent merge issues put your files in folders of your names.
+
+The a.out files should be ignored by default so no need to worry about them
