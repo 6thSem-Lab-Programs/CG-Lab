@@ -1,7 +1,5 @@
 # CG-Lab
 
----
-
 Clone this repo to your system:  
 `git clone https://github.com/6thSem-Lab-Programs/CG-Lab.git`
 
