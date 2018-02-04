@@ -19,4 +19,4 @@ Push changes to remote repo:
 Remember to pull from remote repo before pushing to update your local repo with all the changes:  
 `git pull origin master`
 
-To maintain separate versions put your files in folders of your names.
+To maintain separate versions and prevent merge issues put your files in folders of your names.
