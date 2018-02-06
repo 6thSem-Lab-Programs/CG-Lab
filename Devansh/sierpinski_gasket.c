@@ -17,7 +17,7 @@ void triangle(GLfloat *a, GLfloat *b, GLfloat *c) {
 	glEnd();
 }
 
-void divide_traingle(GLfloat *a, GLfloat *b, GLfloat *c, int m) {
+void divide_triangle(GLfloat *a, GLfloat *b, GLfloat *c, int m) {
 	GLfloat v1[3], v2[3], v3[3];
 	int j;
 
@@ -32,9 +32,9 @@ void divide_traingle(GLfloat *a, GLfloat *b, GLfloat *c, int m) {
 			v3[j] = (b[j] + c[j]) / 2;
 		}
 
-		divide_traingle(a, v1, v2, m - 1);
-		divide_traingle(c, v2, v3, m - 1);
-		divide_traingle(b, v3, v1, m - 1);
+		divide_triangle(a, v1, v2, m - 1);
+		divide_triangle(c, v2, v3, m - 1);
+		divide_triangle(b, v3, v1, m - 1);
 	} else {
 		triangle(a, b, c);
 	}
@@ -42,13 +42,13 @@ void divide_traingle(GLfloat *a, GLfloat *b, GLfloat *c, int m) {
 
 void tetrahedron(int m) {
 	glColor3f(1.0, 0.0, 0.0);
-	divide_traingle(v[0], v[1], v[2], m);
+	divide_triangle(v[0], v[1], v[2], m);
 	glColor3f(0.0, 1.0, 0.0);
-	divide_traingle(v[3], v[2], v[1], m);
+	divide_triangle(v[3], v[2], v[1], m);
 	glColor3f(0.0, 0.0, 1.0);
-	divide_traingle(v[0], v[3], v[1], m);
+	divide_triangle(v[0], v[3], v[1], m);
 	glColor3f(0.0, 0.0, 0.0);
-	divide_traingle(v[0], v[2], v[3], m);
+	divide_triangle(v[0], v[2], v[3], m);
 }
 
 void display() {
