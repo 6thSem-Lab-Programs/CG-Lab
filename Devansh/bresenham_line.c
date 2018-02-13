@@ -5,7 +5,7 @@
 void setPixel (int x, int y) {
     glBegin (GL_POINTS);
     glVertex2i (x, y);
-    glEnd ();
+	glEnd ();
 }
 
 void draw_line (int x1, int y1, int x2, int y2) {
@@ -69,15 +69,22 @@ void display () {
     draw_line (100, 50, 100, 400);
     glFlush ();
     glColor3f (1.0, 0.0, 0.0);
-    draw_line (150, 350, 350, 150);
+    draw_line (150, 350, 250, 250);
     glFlush ();
-    glColor3f (1.0, 0.0, 0.0);
-    draw_line (150, 150, 350, 350);
+    glColor3f (0.0, 1.0, 0.0);
+    draw_line (350, 150, 250, 250);
+    glFlush ();
+    glColor3f (0.0, 0.0, 1.0);
+    draw_line (150, 150, 250, 250);
+    glFlush ();
+    glColor3f (0.5, 0.5, 0.5);
+    draw_line (350, 350, 250, 250);
     glFlush ();
 }
 
 void myinit () {
     glClearColor (1.0, 1.0, 1.0, 1.0);
+	glPointSize(2);
     gluOrtho2D (0.0, 500.0, 0.0, 500.0);
 }
 
