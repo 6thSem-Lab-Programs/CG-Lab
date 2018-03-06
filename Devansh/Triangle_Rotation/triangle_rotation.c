@@ -57,7 +57,7 @@ void display() {
     printf("Enter the rotation angle in degrees: ");
     scanf("%d", &a);*/
 
-    rot_triangle(100, 0, 90);
+    rot_triangle(0, 0, 90);
 
     glColor3f(0.0, 0.0, 1.0);
     draw_triangle(fintriangle);
