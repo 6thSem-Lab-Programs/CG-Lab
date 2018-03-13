@@ -5,6 +5,7 @@
 
 #define PI 3.141592
 
+<<<<<<< HEAD
 GLfloat fixed_point[2] = {0.0,0.0};
 GLfloat triangle[3][3] = {{-100.0,0.0,100.0},
                           {0.0,0.0,100.0},
@@ -12,6 +13,13 @@ GLfloat triangle[3][3] = {{-100.0,0.0,100.0},
 
 int angle = 80;
 
+=======
+GLfloat fixed_point[2] = {100.0,0.0};
+GLfloat triangle[3][3] = {{0.0,100.0,100.0},
+                          {0.0,0.0,100.0},
+                          {1.0,1.0,1.0}};
+
+>>>>>>> 3874265b90030d9e0a0829f39dde8e29ecf88f3f
 void draw_triangle(GLfloat triangle[3][3]) {
     glBegin(GL_TRIANGLES);
         glVertex2f(triangle[0][0], triangle[1][0]);
@@ -20,7 +28,11 @@ void draw_triangle(GLfloat triangle[3][3]) {
     glEnd();
 }
 
+<<<<<<< HEAD
 void rotate_triangle() {
+=======
+void rotate_triangle(int angle) {
+>>>>>>> 3874265b90030d9e0a0829f39dde8e29ecf88f3f
 
     int i, j, k;
     GLfloat result[3][3];
@@ -68,7 +80,20 @@ void display() {
     draw_triangle(triangle);
 
     glColor3f(0.0, 0.0, 1.0);
+<<<<<<< HEAD
     rotate_triangle();
+=======
+    rotate_triangle(45);
+
+    glColor3f(0.0, 1.0, 0.0);
+    rotate_triangle(135);
+
+    glColor3f(0.5, 0.0, 0.5);
+    rotate_triangle(225);
+
+    glColor3f(0.0, 0.5, 0.5);
+    rotate_triangle(315);
+>>>>>>> 3874265b90030d9e0a0829f39dde8e29ecf88f3f
 
     glFlush();
 
@@ -82,6 +107,7 @@ void myinit() {
 int main(int argc,char **argv)
 {
     glutInit(&argc, argv);
+<<<<<<< HEAD
     printf("Enter the coordinates of the triangle:\n");
     scanf("%f%f", &triangle[0][0], &triangle[1][0]);
     scanf("%f%f", &triangle[0][1], &triangle[1][1]);
@@ -90,6 +116,8 @@ int main(int argc,char **argv)
     scanf("%f%f",&fixed_point[0], &fixed_point[1]);
     printf("Enter the rotation angle (in degrees):\n");
     scanf("%d", &angle);
+=======
+>>>>>>> 3874265b90030d9e0a0829f39dde8e29ecf88f3f
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(500, 500);
     glutCreateWindow("Triangle Rotate");
