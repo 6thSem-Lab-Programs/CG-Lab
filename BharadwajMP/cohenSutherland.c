@@ -129,6 +129,7 @@ void display()
 	int i = 0;
 	for(i = 0;i < n;i++)
 	{
+		glColor3f(1,0,0);
 		glBegin(GL_LINES);
 			glVertex2d(px0[i],py0[i]);
 			glVertex2d(px1[i],py1[i]);
