@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1072920196 source:/home/divyaksh/Documents/Coding/rotate_cube/main.cpp
+	<GL/glut.h>
+	<stdio.h>
+
