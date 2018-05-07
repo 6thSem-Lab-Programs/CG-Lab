@@ -39,7 +39,7 @@ void bezier(wcPt3D *ctrlPts, GLint nCtrlPts, GLint nBezCurvePts) {
 	GLint *c = new GLint[nCtrlPts];
 	bino(nCtrlPts-1, c);
 	glBegin(GL_LINE_STRIP);
-	for(k-=0; k<nBezCurvePts; ++k) {
+	for(k=0; k<=nBezCurvePts; ++k) {
 		u=GLfloat(k)/GLfloat(nBezCurvePts);
 		computeBezPt(u, &bezCurvePt, nCtrlPts, ctrlPts, c);
 		glVertex2f(bezCurvePt.x, bezCurvePt.y);
