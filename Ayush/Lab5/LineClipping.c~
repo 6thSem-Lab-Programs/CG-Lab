@@ -1,0 +1,131 @@
+#include<stdio.h>
+#include<GL/glut.h>
+#include<stdbool.h>
+#define outcode int
+#define true 1
+#define false 0
+
+double xmin=50,ymin=50,xmax=100,ymax=100;
+double xvmin=200,yvmin=200,xvmax=300,yvmax=300;
+float x0,Y0,x1,Y1;
+const int RIGHT=1;
+const int LEFT=2;
+const int BOTTOM=4;
+const int TOP=8;
+outcode computeoutcode(double x,double y);
+outcode cohensutherland(double x0,double Y0,double x1,double Y1) {
+    outcode outcode0,outcode1,outcodeout;
+    bool accept=false,done=false;
+    outcode0=computeoutcode(x0,Y0);
+    outcode1=computeoutcode(x1,Y1);
+    do {
+        if(!(outcode0|outcode1)) {
+            accept=true;
+            done=true;
+        }
+        else if(outcode0 & outcode1)
+            done=true;
+        else {
+            double x,y,m;
+            m=(Y1-Y0)/(x1-x0);
+            outcodeout=outcode0?outcode0:outcode1;
+            if(outcodeout & TOP) {
+                x=x0+(ymax-Y0)/m;
+                y=ymax;
+            }
+            else if(outcodeout & BOTTOM) {
+                x=x0+(ymin-Y0)/m;
+                y=ymin;
+            }
+            if(outcodeout & RIGHT) {
+                y=Y0+(xmax-x0)*m;
+                x=xmax;
+            }
+            else {
+                y=Y0+(xmin-x0)*m;
+                x=xmin;
+            }
+
+            if(outcodeout==outcode0) {
+                x0=x;
+                Y0=y;
+                outcode0=computeoutcode(x0,Y0);
+            }
+            else {
+                x1=x;
+                Y1=y;
+                outcode1=computeoutcode(x1,Y1);
+            }
+        }
+    }while(!done);
+    glColor3f(1.0,0.0,0.0);
+    glBegin(GL_LINE_LOOP);
+    	glVertex2f(xvmin,yvmin);
+    	glVertex2f(xvmax,yvmin);
+    	glVertex2f(xvmax,yvmax);
+   	glVertex2f(xvmin,yvmax);
+    glEnd();
+    if(accept) {
+        double sx=(xvmax-xvmin)/(xmax-xmin);
+        double sy=(yvmax-yvmin)/(ymax-ymin);
+        double vx0=xvmin+(x0-xmin)*sx;
+        double vY0=yvmin+(Y0-ymin)*sy;
+        double vx1=xvmin+(x1-xmin)*sx;
+        double vY1=yvmin+(Y1-ymin)*sy;
+        glColor3f(0.0,0.0,1.0);
+        glBegin(GL_LINES);
+        	glVertex2d(vx0,vY0);
+        	glVertex2d(vx1,vY1);
+        glEnd();
+    }
+}
+
+outcode computeoutcode(double x,double y) {
+    outcode code=0;
+    if(y>ymax) code|=TOP;
+    else if(y<ymin) code|=BOTTOM;
+
+    if(x>xmax) code|=RIGHT;
+    if(x<xmin) code|=LEFT;
+    return code;
+}
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(1.0,0.0,0.0);
+    glBegin(GL_LINES);
+    	glVertex2d(x0,Y0);
+    	glVertex2d(x1,Y1);
+    glEnd();
+    glColor3f(0.0,0.0,1.0);
+    glBegin(GL_LINE_LOOP);
+    	glVertex2f(xmin,ymin);
+    	glVertex2f(xmax,ymin);
+    	glVertex2f(xmax,ymax);
+    	glVertex2f(xmin,ymax);
+    glEnd();
+    cohensutherland(x0,Y0,x1,Y1);
+    glFlush();
+}
+void myinit() {
+    glClearColor(1.0,1.0,1.0,1.0);
+    glColor3f(1.0,0.0,0.0);
+    glPointSize(1.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0.0,500.0,0.0,500.0);
+}
+
+int main(int argc,char **argv) {
+    printf("\nEnter the end points :\n");
+    scanf("%f%f%f%f",&x0,&Y0,&x1,&Y1);
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+    glutInitWindowSize(500,500);
+    glutInitWindowPosition(0,0);
+    glutCreateWindow("Line Clipping");
+    glutDisplayFunc(display);
+    myinit();
+    glutMainLoop();
+    return 0;
+}
