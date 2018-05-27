@@ -1,14 +1,14 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
+// #include <time.h>
 #define PI 3.1416
 
 GLsizei winWidth = 600, winHeight = 600;
 GLfloat xwcMin = 0.0, xwcMax = 130.0;
 GLfloat ywcMin = 0.0, ywcMax = 130.0;
 
-int flag = 0, diff = 5;
+int flag = 0;//, diff = 5;
 
 typedef struct WCPt3D
 {
@@ -76,9 +76,15 @@ void displayFcn()
 	{
 		// int randnum = rand() % 50;
 		// printf("%d\n", randnum);
+<<<<<<< HEAD
 		if (flag == 2)
 			theta += diff;
 		printf("%d\n", diff);
+=======
+		if(flag == 2)
+			theta += 2.0;
+		// printf("%d\n", diff);
+>>>>>>> 65c0d1405e8ff7536f36c3855ab69aebc39375bb
 		glColor3f(1.0, 1.0, 1.0);
 		glPointSize(5);
 		glPushMatrix();
@@ -128,6 +134,7 @@ void myMenu(int id)
 	flag = id;
 }
 
+<<<<<<< HEAD
 void keyboard(int key, int x, int y)
 {
 	if (key == GLUT_KEY_UP)
@@ -143,6 +150,19 @@ void keyboard(int key, int x, int y)
 int main(int argc, char **argv)
 {
 	srand(time(NULL));
+=======
+// void keyboard(int key, int x, int y) {
+// 	if(key == GLUT_KEY_UP) {
+// 		diff++;
+// 	}
+// 	if(key == GLUT_KEY_DOWN) {
+// 		diff--;
+// 	}
+// }
+
+int main(int argc, char **argv) {
+	// srand(time(NULL));
+>>>>>>> 65c0d1405e8ff7536f36c3855ab69aebc39375bb
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(50, 50);
@@ -155,7 +175,7 @@ int main(int argc, char **argv)
 	glutAddMenuEntry("Clear", 3);
 	glutAddSubMenu("Flag", subMenu);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
-	glutSpecialFunc(keyboard);
+	// glutSpecialFunc(keyboard);
 	glutDisplayFunc(displayFcn);
 	glutReshapeFunc(winReshapeFun);
 	glClearColor(1.0, 1.0, 1.0, 1.0);
