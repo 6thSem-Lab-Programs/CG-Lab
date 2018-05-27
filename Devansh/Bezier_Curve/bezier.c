@@ -13,80 +13,91 @@ int flag = 0, diff = 5;
 typedef struct WCPt3D
 {
 	GLfloat x, y, z;
-}wcPt3D;
+} wcPt3D;
 
-void bino(GLint n, GLint *C) {
+void bino(GLint n, GLint *C)
+{
 	GLint k, j;
-	for(k = 0; k <= n; k++)	{
+	for (k = 0; k <= n; k++)
+	{
 		C[k] = 1;
-		for(j = n; j >= k + 1; j--)
-		C[k] *= j;
-		for(j = n - k; j >= 2; j--)
-		C[k] /= j;
+		for (j = n; j >= k + 1; j--)
+			C[k] *= j;
+		for (j = n - k; j >= 2; j--)
+			C[k] /= j;
 	}
 }
 
-void computeBezPt(GLfloat u, wcPt3D *bezPt, GLint nCtrlPts, wcPt3D *ctrlPts, GLint *C) {
+void computeBezPt(GLfloat u, wcPt3D *bezPt, GLint nCtrlPts, wcPt3D *ctrlPts, GLint *C)
+{
 	GLint k, n = nCtrlPts - 1;
 	GLfloat bezBlendFcn;
-	bezPt -> x = bezPt -> y = bezPt -> z = 0.0;
-	for(k = 0; k < nCtrlPts; k++) {
+	bezPt->x = bezPt->y = bezPt->z = 0.0;
+	for (k = 0; k < nCtrlPts; k++)
+	{
 		bezBlendFcn = C[k] * pow(u, k) * pow(1 - u, n - k);
-		bezPt -> x += ctrlPts[k].x * bezBlendFcn;
-		bezPt -> y += ctrlPts[k].y * bezBlendFcn;
-		bezPt -> z += ctrlPts[k].z * bezBlendFcn;
+		bezPt->x += ctrlPts[k].x * bezBlendFcn;
+		bezPt->y += ctrlPts[k].y * bezBlendFcn;
+		bezPt->z += ctrlPts[k].z * bezBlendFcn;
 	}
 }
 
-void bezier(wcPt3D *ctrlPts, GLint nCtrlPts, GLint nBezCurvePts) {
+void bezier(wcPt3D *ctrlPts, GLint nCtrlPts, GLint nBezCurvePts)
+{
 	wcPt3D bezCurvePt;
 	GLfloat u;
 	GLint *C, k;
 	C = new GLint[nCtrlPts];
 	bino(nCtrlPts - 1, C);
 	glBegin(GL_LINE_STRIP);
-	for(k = 0; k <= nBezCurvePts; k++) {
+	for (k = 0; k <= nBezCurvePts; k++)
+	{
 		u = GLfloat(k) / GLfloat(nBezCurvePts);
 		computeBezPt(u, &bezCurvePt, nCtrlPts, ctrlPts, C);
 		glVertex2f(bezCurvePt.x, bezCurvePt.y);
 	}
 	glEnd();
-	delete[]C;
+	delete[] C;
 }
 
-void displayFcn() {
+void displayFcn()
+{
 	GLint nCtrlPts = 4, nBezCurvePts = 20;
 	static float theta = 0;
 	wcPt3D ctrlPts[4] = {{20, 100, 0}, {30, 110, 0}, {50, 90, 0}, {60, 100, 0}};
-	ctrlPts[1].x += 10 * sin(theta * PI/180.0);
-	ctrlPts[1].y += 5 * sin(theta * PI/180.0);
-	ctrlPts[2].x -= 10 * sin((theta + 30) * PI/180.0);
-	ctrlPts[2].y -= 10 * sin((theta + 30) * PI/180.0);
-	ctrlPts[3].x -= 4 * sin((theta) * PI/180.0);
-	ctrlPts[3].y += sin((theta - 30) * PI/180.0);
+	ctrlPts[1].x += 10 * sin(theta * PI / 180.0);
+	ctrlPts[1].y += 5 * sin(theta * PI / 180.0);
+	ctrlPts[2].x -= 10 * sin((theta + 30) * PI / 180.0);
+	ctrlPts[2].y -= 10 * sin((theta + 30) * PI / 180.0);
+	ctrlPts[3].x -= 4 * sin((theta)*PI / 180.0);
+	ctrlPts[3].y += sin((theta - 30) * PI / 180.0);
 	glClear(GL_COLOR_BUFFER_BIT);
-	if(flag == 1 || flag == 2) {
+	if (flag == 1 || flag == 2)
+	{
 		// int randnum = rand() % 50;
 		// printf("%d\n", randnum);
-		if(flag == 2)
+		if (flag == 2)
 			theta += diff;
 		printf("%d\n", diff);
 		glColor3f(1.0, 1.0, 1.0);
 		glPointSize(5);
 		glPushMatrix();
-		glLineWidth(5);
+		glLineWidth(15);
 		glColor3f(255 / 255, 153 / 255.0, 51 / 255.0);
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++)
+		{
 			glTranslatef(0, -0.8, 0);
 			bezier(ctrlPts, nCtrlPts, nBezCurvePts);
 		}
 		glColor3f(1, 1, 1);
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++)
+		{
 			glTranslatef(0, -0.8, 0);
 			bezier(ctrlPts, nCtrlPts, nBezCurvePts);
 		}
 		glColor3f(19 / 255.0, 136 / 255.0, 8 / 255.0);
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++)
+		{
 			glTranslatef(0, -0.8, 0);
 			bezier(ctrlPts, nCtrlPts, nBezCurvePts);
 		}
@@ -94,8 +105,8 @@ void displayFcn() {
 		glColor3f(0.7, 0.5, 0.3);
 		glLineWidth(5);
 		glBegin(GL_LINES);
-		glVertex2f(20,100);
-		glVertex2f(20,40);
+		glVertex2f(20, 100);
+		glVertex2f(20, 40);
 		glEnd();
 	}
 	glFlush();
@@ -103,7 +114,8 @@ void displayFcn() {
 	glutSwapBuffers();
 }
 
-void winReshapeFun(GLint newWidth, GLint newHeight) {
+void winReshapeFun(GLint newWidth, GLint newHeight)
+{
 	glViewport(0, 0, newWidth, newHeight);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -111,20 +123,25 @@ void winReshapeFun(GLint newWidth, GLint newHeight) {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void myMenu(int id) {
+void myMenu(int id)
+{
 	flag = id;
 }
 
-void keyboard(int key, int x, int y) {
-	if(key == GLUT_KEY_UP) {
+void keyboard(int key, int x, int y)
+{
+	if (key == GLUT_KEY_UP)
+	{
 		diff++;
 	}
-	if(key == GLUT_KEY_DOWN) {
+	if (key == GLUT_KEY_DOWN)
+	{
 		diff--;
 	}
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	srand(time(NULL));
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -141,6 +158,7 @@ int main(int argc, char **argv) {
 	glutSpecialFunc(keyboard);
 	glutDisplayFunc(displayFcn);
 	glutReshapeFunc(winReshapeFun);
+	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glutMainLoop();
 	return 0;
 }

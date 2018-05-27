@@ -48,10 +48,10 @@ static GLfloat viewer[] = {0.0, 0.0, 5.0};
 void display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    // gluLookAt(viewer[0], viewer[1], viewer[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    glRotatef(theta[0], 1.0, 0.0, 0.0);
-    glRotatef(theta[1], 0.0, 1.0, 0.0);
-    glRotatef(theta[2], 0.0, 0.0, 1.0);
+    gluLookAt(viewer[0], viewer[1], viewer[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    // glRotatef(theta[0], 1.0, 0.0, 0.0);
+    // glRotatef(theta[1], 0.0, 1.0, 0.0);
+    // glRotatef(theta[2], 0.0, 0.0, 1.0);
     color_cube();
     glFlush();
     glutSwapBuffers();
@@ -104,7 +104,36 @@ void keys(unsigned char key, int x, int y) {
         viewer[2] += 1.0;
         break;
     }
+
+    // if(key == 'x'){
+    //     theta[0] -= 1.0;
+    // }
+    // switch(key) {
+    // case 'X':
+    //     theta[0] += 1.0;
+    //     break;
+    // case 'y':
+    //     theta[1] -= 1.0;
+    //     break;
+    // case 'Y':
+    //     theta[1] += 1.0;
+    //     break;
+    // case 'z':
+    //     theta[2] -= 1.0;
+    //     break;
+    // case 'Z':
+    //     theta[2] += 1.0;
+    //     break;
+    // }
+    //
+    // if(theta[0] > 360) theta[0] -= 360;
+    // if(theta[1] > 360) theta[1] -= 360;
+    // if(theta[2] > 360) theta[2] -= 360;
     display();
+}
+
+void myinit() {
+  glClearColor(1.0, 1.0, 1.0, 1.0);
 }
 
 int main (int argc, char **argv) {
@@ -114,9 +143,10 @@ int main (int argc, char **argv) {
     glutCreateWindow("Spinning Cube");
     glutReshapeFunc(myReShape);
     glutDisplayFunc(display);
-    glutIdleFunc(spinCube);
-    glutMouseFunc(mouse);
-    // glutKeyboardFunc(keys);
+    // glutIdleFunc(spinCube);
+    // glutMouseFunc(mouse);
+    myinit();
+    glutKeyboardFunc(keys);
     glEnable(GL_DEPTH_TEST);
     glutMainLoop();
     return 0;

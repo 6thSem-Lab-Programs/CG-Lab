@@ -41,7 +41,7 @@ void draw_pixel(int x,int y)
 	glBegin(GL_POINTS);
 		glVertex2i(x,y);
 	glEnd();
-	glFlush();
+	//glFlush();
 } 
 
 void scanfill(float x1,float y1,float x2,float y2,float x3,float y3,float x4,float y4)
