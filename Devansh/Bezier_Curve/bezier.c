@@ -76,15 +76,9 @@ void displayFcn()
 	{
 		// int randnum = rand() % 50;
 		// printf("%d\n", randnum);
-<<<<<<< HEAD
 		if (flag == 2)
 			theta += diff;
 		printf("%d\n", diff);
-=======
-		if(flag == 2)
-			theta += 2.0;
-		// printf("%d\n", diff);
->>>>>>> 65c0d1405e8ff7536f36c3855ab69aebc39375bb
 		glColor3f(1.0, 1.0, 1.0);
 		glPointSize(5);
 		glPushMatrix();
@@ -134,23 +128,6 @@ void myMenu(int id)
 	flag = id;
 }
 
-<<<<<<< HEAD
-void keyboard(int key, int x, int y)
-{
-	if (key == GLUT_KEY_UP)
-	{
-		diff++;
-	}
-	if (key == GLUT_KEY_DOWN)
-	{
-		diff--;
-	}
-}
-
-int main(int argc, char **argv)
-{
-	srand(time(NULL));
-=======
 // void keyboard(int key, int x, int y) {
 // 	if(key == GLUT_KEY_UP) {
 // 		diff++;
@@ -162,7 +139,6 @@ int main(int argc, char **argv)
 
 int main(int argc, char **argv) {
 	// srand(time(NULL));
->>>>>>> 65c0d1405e8ff7536f36c3855ab69aebc39375bb
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(50, 50);
