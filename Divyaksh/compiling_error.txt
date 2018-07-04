@@ -1,0 +1,30 @@
+/tmp/ccNLPRvp.o: In function `setPixel':
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:6: undefined reference to `glBegin'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:7: undefined reference to `glVertex2i'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:8: undefined reference to `glEnd'
+/tmp/ccNLPRvp.o: In function `display':
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:64: undefined reference to `glClear'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:65: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:67: undefined reference to `glFlush'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:68: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:70: undefined reference to `glFlush'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:71: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:73: undefined reference to `glFlush'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:74: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:76: undefined reference to `glFlush'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:77: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:79: undefined reference to `glFlush'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:80: undefined reference to `glColor3f'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:82: undefined reference to `glFlush'
+/tmp/ccNLPRvp.o: In function `myinit':
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:86: undefined reference to `glClearColor'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:87: undefined reference to `glPointSize'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:88: undefined reference to `gluOrtho2D'
+/tmp/ccNLPRvp.o: In function `main':
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:92: undefined reference to `glutInit'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:93: undefined reference to `glutInitDisplayMode'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:94: undefined reference to `glutInitWindowSize'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:95: undefined reference to `glutCreateWindow'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:96: undefined reference to `glutDisplayFunc'
+/home/divyaksh/Documents/Coding/open_gl/CG-Lab/Divyaksh/bresenham_line.c:100: undefined reference to `glutMainLoop'
+collect2: error: ld returned 1 exit status
